@@ -19,6 +19,7 @@ RUN apk --update add wget \
     oniguruma-dev \
     openssl \
     openssl-dev \
+    postgresql-dev \
     npm
 
 # Add docker php ext repo
@@ -26,7 +27,7 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 
 # Install php extensions
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
-    install-php-extensions mbstring odbc pdo_odbc sqlsrv pdo_sqlsrv zip exif pcntl gd memcached
+    install-php-extensions mbstring odbc pdo_odbc sqlsrv pdo_sqlsrv pgsql pdo_pgsql zip exif pcntl gd memcached
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
