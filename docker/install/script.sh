@@ -3,7 +3,7 @@
 cd /var/www/html
 
 #Install composer dependencies
-composer install --optimize-autoloader --no-dev
+composer install --optimize-autoloader
 
 # Copy .env file
 cp .env.example .env
