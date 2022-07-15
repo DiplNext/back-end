@@ -3,6 +3,8 @@ FROM php:8.1-fpm-alpine
 # Set working directory
 WORKDIR /var/www/html
 
+ARG ENV
+
 #Install dependencies
 RUN apk --update add wget \
     curl \
