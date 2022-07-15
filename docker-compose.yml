@@ -19,6 +19,8 @@ services:
         build:
             context: ./
             dockerfile: ./docker/php/Dockerfile
+            args:
+                env: ${APP_ENV}
         container_name: moldagroteh-app
         restart: unless-stopped
         volumes:
