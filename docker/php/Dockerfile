@@ -1,9 +1,11 @@
 FROM php:8.1-fpm-alpine
 
+ARG ENV
+ARG WWWGROUP
+ARG NODE_VERSION=16
+
 # Set working directory
 WORKDIR /var/www/html
-
-ARG ENV
 
 #Install dependencies
 RUN apk --update add wget \
@@ -21,8 +23,7 @@ RUN apk --update add wget \
     oniguruma-dev \
     openssl \
     openssl-dev \
-    postgresql-dev \
-    npm
+    postgresql-dev
 
 # Add docker php ext repo
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
@@ -34,14 +35,21 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Add user for laravel application
-#RUN adduser -g "www-data" www-data
+# Install latest version of Node JS
+RUN apk add nodejs npm
 
-# Copy supervisor configuration
-COPY docker/supervisor/supervisord.conf /etc/supervisord.conf
+# Add user for laravel application
+RUN addgroup -g 1337 moldagroteh
+RUN adduser -u 1337 -G moldagroteh -D moldagroteh
 
 # Copy install script
 COPY docker/install/script.sh /tmp/script.sh
+
+# Copy supervisor configuration
+COPY docker/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+RUN chmod +x /tmp/script.sh
+
+EXPOSE 9000
 
 #Install dependencies
 ENTRYPOINT ["/tmp/script.sh"]
