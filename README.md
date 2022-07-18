@@ -1,7 +1,13 @@
 ### For local dev:
 1) Make directory for docker:
 ```
-mkdir ./storage/docker{supervisor/run, logs/php, logs/supervisor}
+mkdir ./storage/docker
+```
+```
+cd ./storage/docker
+```
+```
+ mkdir -p logs/php logs/supervisor supervisor/run
 ```
 2) Copy .env.example
 ```
@@ -24,6 +30,12 @@ docker-compose exec moldagroteh-app npm i
 1) Make directory for docker:
 ```
 mkdir ./storage/docker
+```
+```
+cd ./storage/docker
+```
+```
+ mkdir -p logs/php logs/supervisor supervisor/run
 ```
 2) Copy .env.example
 ```
