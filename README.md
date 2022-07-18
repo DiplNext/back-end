@@ -4,10 +4,9 @@
 mkdir ./storage/docker
 ```
 ```
-cd ./storage/docker
-```
-```
- mkdir -p logs/php logs/supervisor supervisor/run
+ mkdir -p ./storage/docker/logs/php \
+ ./storage/docker/logs/supervisor \
+ ./storage/docker/supervisor/run
 ```
 2) Copy .env.example
 ```
@@ -36,10 +35,9 @@ docker-compose exec moldagroteh-app php artisan key:generate
 mkdir ./storage/docker
 ```
 ```
-cd ./storage/docker
-```
-```
- mkdir -p logs/php logs/supervisor supervisor/run
+ mkdir -p ./storage/docker/logs/php \
+ ./storage/docker/logs/supervisor \
+ ./storage/docker/supervisor/run
 ```
 2) Copy .env.example
 ```
@@ -66,4 +64,8 @@ docker-compose exec moldagroteh-app npm set-script prepare ""
 7) Install npm dependencies
 ```
 docker-compose exec moldagroteh-app npm i
+```
+8) Set Application key
+```
+docker-compose exec moldagroteh-app php artisan key:generate
 ```
