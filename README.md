@@ -25,6 +25,10 @@ docker-compose exec moldagroteh-app composer install --optimize-autoloader
 ```
 docker-compose exec moldagroteh-app npm i
 ```
+6) Set Application key
+```
+docker-compose exec moldagroteh-app php artisan key:generate
+```
 
 ### For production build:
 1) Make directory for docker:
