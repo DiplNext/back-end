@@ -5,13 +5,13 @@ services:
         restart: unless-stopped
         container_name: moldagroteh-database
         ports:
-            -   "5432:5432"
+            - "5432:5432"
         environment:
             POSTGRES_DB: ${DB_DATABASE}
             POSTGRES_USER: ${DB_USERNAME}
             POSTGRES_PASSWORD: ${DB_PASSWORD}
         volumes:
-            -   ./storage/docker/_db:/var/lib/postgresql/data
+            - ./storage/docker/_db:/var/lib/postgresql/data
         networks:
             - moldagroteh-database-network
 
@@ -20,14 +20,17 @@ services:
             context: ./
             dockerfile: ./docker/php/Dockerfile
             args:
-                env: ${APP_ENV}
+                ENV: ${APP_ENV}
+                WWWGROUP: '${WWWGROUP}'
         container_name: moldagroteh-app
         restart: unless-stopped
+        environment:
+            WWWUSER: '${WWWUSER}'
         volumes:
-            -   ./:/var/www/html
+            - ./:/var/www/html
             - ./docker/php/extend-php.ini:/usr/local/etc/php/conf.d/extend-php.ini
         depends_on:
-            -   database
+            - database
         networks:
             - moldagroteh-database-network
             - moldagroteh-app-network
@@ -37,11 +40,11 @@ services:
         restart: unless-stopped
         container_name: webserver
         volumes:
-            -   ./:/var/www/html
-            -   ./docker/nginx/conf.d/:/etc/nginx/conf.d/
-            -   ./storage/docker/logs/nginx/:/var/log/nginx/
+            - ./:/var/www/html
+            - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+            - ./storage/docker/logs/nginx/:/var/log/nginx/
         ports:
-            -   "8080:80"
+            - "8080:80"
         networks:
             - moldagroteh-app-network
 networks:
