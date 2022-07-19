@@ -23,6 +23,7 @@
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12",
         "fakerphp/faker": "^1.9.1",
+        "laravel/telescope": "^4.9",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
         "nunomaduro/phpinsights": "^2.4",
@@ -68,7 +69,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+              "laravel/telescope"
+            ]
         }
     },
     "config": {
