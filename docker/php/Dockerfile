@@ -54,5 +54,5 @@ RUN chmod +x /tmp/script.sh
 EXPOSE 9000
 
 #Install dependencies
-ENTRYPOINT ["/tmp/script.sh"]
+#ENTRYPOINT ["/tmp/script.sh"]
 #CMD ["/tmp/script.sh"]
