@@ -23,7 +23,9 @@ RUN apk --update add wget \
     oniguruma-dev \
     openssl \
     openssl-dev \
-    postgresql-dev
+    postgresql-dev \
+    zip \
+    unzip
 
 # Add docker php ext repo
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
@@ -42,7 +44,7 @@ RUN apk add nodejs npm
 RUN addgroup -g 1337 moldagroteh
 RUN adduser -u 1337 -G moldagroteh -D moldagroteh
 
-# Copy install script
+# Copy install script.sh
 COPY docker/install/script.sh /tmp/script.sh
 
 # Copy supervisor configuration
