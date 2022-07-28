@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\Api\v1\HumanResources\DepartmentController;
 use App\Http\Controllers\Api\v1\HumanResources\DepartmentTypeController;
+use App\Http\Controllers\Api\v1\HumanResources\EmploymentClassifierController;
 use App\Http\Controllers\Api\v1\HumanResources\StaffStructureController;
-use App\Models\EmploymentClassifier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +31,6 @@ Route::group(['prefix' => 'v1'], function () {
     Route::resource('department-types', DepartmentTypeController::class);
     Route::resource('departments', DepartmentController::class);
     Route::resource('staff-structures', StaffStructureController::class);
-    Route::resource('employment-classifiers', EmploymentClassifier::class);
+    Route::resource('employment-classifiers', EmploymentClassifierController::class);
   });
 });
