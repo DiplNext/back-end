@@ -1,9 +1,5 @@
 FROM php:8.1-fpm-alpine
 
-ARG ENV
-ARG WWWGROUP
-ARG NODE_VERSION=16
-
 # Set working directory
 WORKDIR /var/www/html
 
@@ -40,16 +36,13 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install latest version of Node JS
 RUN apk add nodejs npm
 
-# Add user for laravel application
-RUN addgroup -g 1337 moldagroteh
-RUN adduser -u 1337 -G moldagroteh -D moldagroteh
 
 # Copy install script.sh
-COPY docker/install/script.sh /tmp/script.sh
+#COPY docker/install/script.sh /tmp/script.sh
 
 # Copy supervisor configuration
 COPY docker/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-RUN chmod +x /tmp/script.sh
+#RUN chmod +x /tmp/script.sh
 
 EXPOSE 9000
 

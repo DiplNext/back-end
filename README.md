@@ -12,19 +12,24 @@ mkdir ./storage/docker
 ```
 cp .env.example .env
 ```
-3) Run docker services
+3) Add current user to app
+```
+echo UID=$(id -u) >> .env
+echo GID=$(id -g) >> .env
+```
+4) Run docker services
 ```
 docker-compose up -d --build
 ```
-4) Install Composer dependencies in docker container
+5) Install Composer dependencies in docker container
 ```
 docker-compose exec moldagroteh-app composer install --optimize-autoloader
 ```
-5) Install npm dependencies
+6) Install npm dependencies
 ```
 docker-compose exec moldagroteh-app npm i
 ```
-6) Set Application key
+7) Set Application key
 ```
 docker-compose exec moldagroteh-app php artisan key:generate
 ```
@@ -49,23 +54,29 @@ cp .env.example .env
 3. Set APP_DEBUG=false
 4. Set APP_URL=https://api.agropiese.md
 
-4) Run docker services
+4) Add current user to app
+```
+echo UID=$(id -u) >> .env
+echo GID=$(id -g) >> .env
+```
+
+5) Run docker services
 ```
 docker-compose up -d --build
 ```
-5) Install Composer dependencies in docker container
+6) Install Composer dependencies in docker container
 ```
 docker-compose exec moldagroteh-app composer install --optimize-autoloader --no-dev
 ```
-6) Remove npm prepare script
+7) Remove npm prepare script
 ```
 docker-compose exec moldagroteh-app npm set-script prepare ""
 ```
-7) Install npm dependencies
+8) Install npm dependencies
 ```
 docker-compose exec moldagroteh-app npm i
 ```
-8) Set Application key
+9) Set Application key
 ```
 docker-compose exec moldagroteh-app php artisan key:generate
 ```
