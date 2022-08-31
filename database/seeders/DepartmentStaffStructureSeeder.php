@@ -12,8 +12,8 @@ class DepartmentStaffStructureSeeder extends Seeder
    *
    * @return void
    */
-  public function run(): void
-  {
-    DepartmentStaffStructure::factory(58)->create();
-  }
+    public function run(): void
+    {
+        DepartmentStaffStructure::factory(58)->create();
+    }
 }

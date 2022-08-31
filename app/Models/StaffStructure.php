@@ -2,13 +2,27 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Query\Builder;
 
 /**
+ * App\Models\StaffStructure
+ *
  * @mixin IdeHelperStaffStructure
+ * @property-read Collection|DepartmentType[] $department_types
+ * @property-read int|null $department_types_count
+ * @property-read Collection|Department[] $departments
+ * @property-read int|null $departments_count
+ * @method static \Illuminate\Database\Eloquent\Builder|StaffStructure newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StaffStructure newQuery()
+ * @method static Builder|StaffStructure onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|StaffStructure query()
+ * @method static Builder|StaffStructure withTrashed()
+ * @method static Builder|StaffStructure withoutTrashed()
  */
 class StaffStructure extends Model
 {
@@ -23,13 +37,13 @@ class StaffStructure extends Model
         'deleted_at'
     ];
 
-    protected  $casts = [
+    protected $casts = [
         'created_at' => 'datetime:d-m-Y H:i:s',
         'updated_at' => 'datetime:d-m-Y H:i:s',
         'deleted_at' => 'datetime:d-m-Y H:i:s'
     ];
 
-    public function department_types(): BelongsToMany
+    public function departmentTypes(): BelongsToMany
     {
         return $this->belongsToMany(DepartmentType::class);
     }

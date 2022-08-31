@@ -11,16 +11,16 @@ class DatabaseSeeder extends Seeder
    *
    * @return void
    */
-  public function run(): void
-  {
-    $this->call([
-      UserSeeder::class,
-      StaffStructureSeeder::class,
-      DepartmentTypeSeeder::class,
-      DepartmentSeeder::class,
-      DepartmentTypeStaffStructureSeeder::class,
-      DepartmentStaffStructureSeeder::class,
-      EmploymentClassifierSeeder::class,
-    ]);
-  }
+    public function run(): void
+    {
+        $this->call([
+        UserSeeder::class,
+        StaffStructureSeeder::class,
+        DepartmentTypeSeeder::class,
+        DepartmentSeeder::class,
+        DepartmentTypeStaffStructureSeeder::class,
+        DepartmentStaffStructureSeeder::class,
+        EmploymentClassifierSeeder::class,
+        ]);
+    }
 }
