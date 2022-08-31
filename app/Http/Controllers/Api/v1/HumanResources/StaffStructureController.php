@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1\HumanResources;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StaffStructureRequest;
 use App\Http\Resources\StaffStructureResource;
 use App\Models\StaffStructure;
 use Illuminate\Http\Request;
@@ -21,15 +22,16 @@ class StaffStructureController extends Controller
         return StaffStructureResource::collection(StaffStructure::all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @param StaffStructureRequest $request
+   * @return StaffStructureResource
+   */
+    public function store(StaffStructureRequest $request): StaffStructureResource
     {
-        //
+        $staffStructure = StaffStructure::create($request->validated());
+        return StaffStructureResource::make($staffStructure);
     }
 
     /**
@@ -43,16 +45,17 @@ class StaffStructureController extends Controller
         return StaffStructureResource::make($staffStructure);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param StaffStructure $staffStructure
-     * @return Response
-     */
-    public function update(Request $request, StaffStructure $staffStructure)
+  /**
+   * Update the specified resource in storage.
+   *
+   * @param StaffStructureRequest $request
+   * @param StaffStructure $staffStructure
+   * @return StaffStructureResource
+   */
+    public function update(StaffStructureRequest $request, StaffStructure $staffStructure): StaffStructureResource
     {
-        //
+        $staffStructure->update($request->validated());
+        return StaffStructureResource::make($staffStructure);
     }
 
     /**
