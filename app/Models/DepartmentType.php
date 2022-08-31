@@ -2,13 +2,25 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Query\Builder;
 
 /**
+ * App\Models\DepartmentType
+ *
  * @mixin IdeHelperDepartmentType
+ * @property-read Collection|StaffStructure[] $staff_structures
+ * @property-read int|null $staff_structures_count
+ * @method static \Illuminate\Database\Eloquent\Builder|DepartmentType newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DepartmentType newQuery()
+ * @method static Builder|DepartmentType onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|DepartmentType query()
+ * @method static Builder|DepartmentType withTrashed()
+ * @method static Builder|DepartmentType withoutTrashed()
  */
 class DepartmentType extends Model
 {
@@ -31,7 +43,7 @@ class DepartmentType extends Model
         'deleted_at' => 'datetime:d-m-Y H:i:s'
     ];
 
-    public function staff_structures(): BelongsToMany
+    public function staffStructures(): BelongsToMany
     {
         return $this->belongsToMany(StaffStructure::class);
     }
