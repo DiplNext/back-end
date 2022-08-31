@@ -15,11 +15,11 @@ class DepartmentStaffStructureFactory extends Factory
    *
    * @return array<string, mixed>
    */
-  public function definition(): array
-  {
-    return [
-      'department_id' => $this->faker->numberBetween(1, 58),
-      'staff_structure_id' => 1,
-    ];
-  }
+    public function definition(): array
+    {
+        return [
+        'department_id' => $this->faker->numberBetween(1, 58),
+        'staff_structure_id' => 1,
+        ];
+    }
 }

@@ -16,24 +16,24 @@ class DepartmentSeeder extends Seeder
    *
    * @return void
    */
-  public function run(): void
-  {
-    $import = Excel::toCollection(new DepartmentTypesImport(), Storage::path('department_types.xlsx'));
-    foreach ($import[0] as $key => $value) {
-      if ($key > 3) {
-        if ($value[0] != null) {
-          Department::create([
-            'parent_id' => null,
-            'department_type_id' => $value[0],
-            'code' => $value[5],
-            'title' => $value[3],
-            'short_title' => $value[4],
-            'employees_count' => 0,
-            'supervisors_count' => 0,
-            'user_id' => User::first()->id,
-          ]);
+    public function run(): void
+    {
+        $import = Excel::toCollection(new DepartmentTypesImport(), Storage::path('department_types.xlsx'));
+        foreach ($import[0] as $key => $value) {
+            if ($key > 3) {
+                if ($value[0] != null) {
+                    Department::create([
+                    'parent_id' => null,
+                    'department_type_id' => $value[0],
+                    'code' => $value[5],
+                    'title' => $value[3],
+                    'short_title' => $value[4],
+                    'employees_count' => 0,
+                    'supervisors_count' => 0,
+                    'user_id' => User::first()->id,
+                    ]);
+                }
+            }
         }
-      }
     }
-  }
 }
